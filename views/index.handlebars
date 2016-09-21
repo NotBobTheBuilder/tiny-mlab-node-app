@@ -1,43 +1,48 @@
-<h2>Some damn swish doggos 🐕</h2>
-<small><a href="/create">Click here to generate 5 random ones</a></small>
+<h2>🐕 🐕 🐕 🐶 🐶 🐶</h2>
+<small><a href="/create">Click here to generate 5 random entries</a></small>
 <form method=POST action="" class="new">
   <table class="ui single line table">
-    <thead><tr>
-      <th>Name</th>
-      <th>Age</th>
-      <th>Owner First Name</th>
-      <th>Owner Last Name</th>
-    </tr></thead>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>Owner First Name</th>
+        <th>Owner Last Name</th>
+      </tr>
+    </thead>
     
-	<tbody>
-    {{#each dogs}}
-    <tr>
-      <td>{{name}}</td>
-      <td>{{age}}</td>
-      <td>{{ownerFirstName}}</td>
-      <td>{{ownerLastName}}</td>
-    </tr>
-    {{/each}}
-	</tbody>
+    <tbody>
+      {{#each dogs}}
+      <tr>
+        <td>{{name}}</td>
+        <td>{{age}}</td>
+        <td>{{ownerFirstName}}</td>
+        <td>{{ownerLastName}}</td>
+      </tr>
+      {{/each}}
+    </tbody>
 
-    <tfoot><tr><td colspan=4> 
-	<div class="ui form">
-	<h4>New Dog</h4>
-	<div class="four fields">
-      <div class="field"><label>Name</label> <input type="text" id="name"></div>
-      <div class="field"><label>Age</label> <input type="number" id="age"></div>
-      <div class="field"><label>Owner First Name</label> <input type="text" id="ownerFirstName"></div>
-      <div class="field"><label>Owner Last Name</label> <input type="text" id="ownerLastName"></div>
-	</div>
-    <button class="ui primary button">Save</button>
-	</div>
-	</td></tr></tfoot>
+    <tfoot>
+      <tr><td colspan=4> 
+        <div class="ui form">
+          <h4>New Dog</h4>
+          <div class="four fields">
+            <div class="field"><label>Name</label> <input type="text" id="name"></div>
+            <div class="field"><label>Age</label> <input type="number" id="age"></div>
+            <div class="field"><label>Owner First Name</label> <input type="text" id="ownerFirstName"></div>
+            <div class="field"><label>Owner Last Name</label> <input type="text" id="ownerLastName"></div>
+          </div>
+          <button class="ui primary button">Save</button>
+        </div>
+      </td></tr>
+    </tfoot>
   </table>
 </form>
 
 <script>
 document.querySelector('.new').addEventListener('submit', function(e) {
   e.preventDefault();
+
   var name = document.querySelector('#name').value;
   var age = document.querySelector('#age').value;
   var ownerFirstName = document.querySelector('#ownerFirstName').value;
@@ -54,11 +59,8 @@ document.querySelector('.new').addEventListener('submit', function(e) {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(dog)
-    }).then(function() {
-	location.reload();
-    }).catch(function(err) {
-      console.error(err);
-    });
+    }).then(function() { location.reload(); })
+      .catch(function(err) { console.error(err); });
   } else {
     alert('Invalid data');
   }

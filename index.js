@@ -15,6 +15,7 @@ app.set('view engine', 'handlebars');
 app.use(bodyParser.json());
 
 const genDogs = (n) => {
+  // Can't JS get a range function already?
   return Array.apply(null, Array(n)).map(() => {
     return {
       name: faker.name.firstName(),
@@ -59,4 +60,7 @@ mongo.connect(connString).then((db) => {
   });
 
   app.listen(port);
+}).catch(err => {
+  console.error("An error occurred");
+  console.error(err); 
 });
