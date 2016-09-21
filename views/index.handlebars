@@ -1,0 +1,59 @@
+<form method=POST action="" class="new">
+  <table>
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Owner First Name</th>
+      <th>Owner Last Name</th>
+    </tr>
+    
+    {{#each dogs}}
+    <tr>
+      <td>{{name}}</td>
+      <td>{{age}}</td>
+      <td>{{ownerFirstName}}</td>
+      <td>{{ownerLastName}}</td>
+    </tr>
+    {{/each}}
+    <tr>
+      <td><input type="text" id="name"></td>
+      <td><input type="number" id="age"></td>
+      <td><input type="text" id="ownerFirstName"></td>
+      <td><input type="text" id="ownerLastName"></td>
+    </tr>
+	<tr>
+      <td colspan=3>&nbsp;</td>
+      <td><input type=submit></td>
+	</tr>
+  </table>
+</form>
+
+<script>
+document.querySelector('.new').addEventListener('submit', function(e) {
+  e.preventDefault();
+  var name = document.querySelector('#name').value;
+  var age = document.querySelector('#age').value;
+  var ownerFirstName = document.querySelector('#ownerFirstName').value;
+  var ownerLastName = document.querySelector('#ownerLastName').value;
+
+  if (name && age && ownerFirstName && ownerLastName) {
+    var dog = {
+      name: name,
+      age: age,
+      ownerFirstName: ownerFirstName,
+      ownerLastName: ownerLastName
+    }
+    fetch('/doggies', {
+      method: 'POST',
+      headers: new Headers({ 'Content-Type': 'application/json' }),
+      body: JSON.stringify(dog)
+    }).then(function() {
+		console.log('ok');
+    }).catch(function(err) {
+      console.error(err);
+    });
+  } else {
+    alert('Invalid data');
+  }
+});
+</script>
