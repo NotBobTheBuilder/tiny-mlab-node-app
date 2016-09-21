@@ -1,12 +1,15 @@
+<h2>Some damn swish doggos 🐕</h2>
+<small><a href="/create">Click here to generate 5 random ones</a></small>
 <form method=POST action="" class="new">
-  <table>
-    <tr>
+  <table class="ui single line table">
+    <thead><tr>
       <th>Name</th>
       <th>Age</th>
       <th>Owner First Name</th>
       <th>Owner Last Name</th>
-    </tr>
+    </tr></thead>
     
+	<tbody>
     {{#each dogs}}
     <tr>
       <td>{{name}}</td>
@@ -15,16 +18,20 @@
       <td>{{ownerLastName}}</td>
     </tr>
     {{/each}}
-    <tr>
-      <td><input type="text" id="name"></td>
-      <td><input type="number" id="age"></td>
-      <td><input type="text" id="ownerFirstName"></td>
-      <td><input type="text" id="ownerLastName"></td>
-    </tr>
-	<tr>
-      <td colspan=3>&nbsp;</td>
-      <td><input type=submit></td>
-	</tr>
+	</tbody>
+
+    <tfoot><tr><td colspan=4> 
+	<div class="ui form">
+	<h4>New Dog</h4>
+	<div class="four fields">
+      <div class="field"><label>Name</label> <input type="text" id="name"></div>
+      <div class="field"><label>Age</label> <input type="number" id="age"></div>
+      <div class="field"><label>Owner First Name</label> <input type="text" id="ownerFirstName"></div>
+      <div class="field"><label>Owner Last Name</label> <input type="text" id="ownerLastName"></div>
+	</div>
+    <button class="ui primary button">Save</button>
+	</div>
+	</td></tr></tfoot>
   </table>
 </form>
 
@@ -48,7 +55,7 @@ document.querySelector('.new').addEventListener('submit', function(e) {
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(dog)
     }).then(function() {
-		console.log('ok');
+	location.reload();
     }).catch(function(err) {
       console.error(err);
     });
