@@ -2,6 +2,7 @@ const Promise = require('bluebird');
 
 const mongo = Promise.promisifyAll(require('mongodb'));
 const connString = process.env.MONGO_STRING;
+const port = process.env.PORT || 3000;
 
 const faker = require('faker');
 const express = require('express');
@@ -57,5 +58,5 @@ mongo.connect(connString).then((db) => {
       .catch(err => res.error(err));
   });
 
-  app.listen(3000);
+  app.listen(port);
 });
