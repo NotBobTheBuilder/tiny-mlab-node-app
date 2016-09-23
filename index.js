@@ -35,19 +35,19 @@ mongo.connect(connString).then((db) => {
       .catch(err => res.error(err));
   });
 
-  app.get('/doggies', (req, res) => {
+  app.get('/doggos', (req, res) => {
     dogs.find().sort({name: 1}).toArray()
       .then(dogs => res.json(dogs))
       .catch(err => res.error(err));
   });
 
-  app.post('/doggies', (req, res) => {
+  app.post('/doggos', (req, res) => {
     dogs.insert(req.body)
       .then(dog => res.status(201).end())
       .catch(err => res.error(err));
   });
 
-  app.get('/doggies/:name', (req, res) => {
+  app.get('/doggos/:name', (req, res) => {
     dogs.findOne({name: req.params.name})
       .then(dog => res.json(dog))
       .catch(err => res.error(err));

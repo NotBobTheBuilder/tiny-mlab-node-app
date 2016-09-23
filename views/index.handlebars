@@ -55,7 +55,7 @@ document.querySelector('.new').addEventListener('submit', function(e) {
       ownerFirstName: ownerFirstName,
       ownerLastName: ownerLastName
     }
-    fetch('/doggies', {
+    fetch('/doggos', {
       method: 'POST',
       headers: new Headers({ 'Content-Type': 'application/json' }),
       body: JSON.stringify(dog)
